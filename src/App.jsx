@@ -93,7 +93,7 @@ function PanelsContainer({ toggleSignUp }) {
             Sign up
           </button>
         </div>
-          <img src="assets/log.svg" class="image" alt="" />
+          <img src="./assets/log.svg" class="image" alt="" />
       </div>
       <div className="panel right-panel">
         <div class="content">
@@ -106,7 +106,7 @@ function PanelsContainer({ toggleSignUp }) {
             Sign in
           </button>
         </div>
-        <img src="assets/register.svg" class="image" alt="" />
+        <img src="./assets/register.svg" class="image" alt="" />
       </div>
     </div>
   );
