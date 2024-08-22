@@ -1,52 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './Dashboard.css'; 
+import React, { useState } from 'react';
+import './css/Dashboard.css';
 
 const Dashboard = () => {
-  const [profileImage, setProfileImage] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    // Fetch profile image from API or local storage
-    // Example:
-    // const storedImage = localStorage.getItem('profileImage');
-    // if (storedImage) {
-    //   setProfileImage(storedImage);
-    // }
-  }, []);
-
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setProfileImage(e.target.result);
-        // Store image in local storage or send to API
-        // Example:
-        // localStorage.setItem('profileImage', e.target.result);
-      };
-      reader.readAsDataURL(file);
-    }
+  const handleToggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
-    <div className="dashboard-container">
-      <nav className="dashboard-nav">
-        <div className="profile-section">
-          <img src={profileImage || 'placeholder.jpg'} alt="Profile" className="profile-image" />
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
+    <header className="dashboard">
+      <nav className="navbar">
+        <div className="logo">CompanyLogo</div>
+        <div id="nav-toggle" onClick={handleToggleMenu}>
+          ☰
         </div>
-        <ul>
-          <li><Link to="/dashboard/projects">Projects</Link></li>
-          <li><Link to="/dashboard/clients">Clients</Link></li>
-          <li><Link to="/dashboard/team">Team</Link></li>
-          <li><Link to="/login">Team</Link></li>
-          {/* Add more navigation items as needed */}
+        <ul className={`nav-links ${menuOpen ? 'responsive' : ''}`}>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <main className="dashboard-content">
-        {/* Dashboard content goes here */}
-      </main>
-    </div>
+    </header>
   );
 };
 
