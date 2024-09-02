@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import SignInSignUp from './SignInSignUp';
-import Header from './components/Header';
-import Home from './components/Home'; // Create a simple Home component for demonstration
+import SignInSignUp from './pages/SignInSignUp';
+import Dashboard from './pages/Dashboard'; // Create a simple Home component for demonstration
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
@@ -17,11 +16,10 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/signin" render={(props) => <SignInSignUp {...props} onAuth={handleAuthentication} />} />
-          <Route path="/home" render={() => (
+          <Route path="/dashboard" render={() => (
             isAuthenticated ? (
               <>
-                <Header />
-                <Home />
+                <Dashboard />
               </>
             ) : (
               <Redirect to="/signin" />
